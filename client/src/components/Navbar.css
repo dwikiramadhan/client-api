@@ -1,0 +1,14 @@
+.nav-link {
+    background: none;
+    border: none;
+}
+
+.nav-link.active {
+    background: none;
+    border: none;
+}
+
+.navbar-dark .navbar-brand {
+    background: none;
+    border: none;
+}

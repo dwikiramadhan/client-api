@@ -1,6 +1,4 @@
-body {
-    padding-top: 90px;
-}
+
 .col-xs-6 {
     width: 50%;
 }
@@ -17,6 +15,7 @@ body {
     padding: 15px;
 }
 .panel-login {
+	margin-top: 10%;
 	border-color: #ccc;
 	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
@@ -34,18 +33,22 @@ body {
 	border-color: #fff;
 	text-align:center;
 }
-.panel-login>.panel-heading a{
+.panel-login>.panel-heading button{
 	text-decoration: none;
 	color: #666;
+	background: none;
+    border: none;
 	font-weight: bold;
 	font-size: 15px;
 	-webkit-transition: all 0.1s linear;
 	-moz-transition: all 0.1s linear;
 	transition: all 0.1s linear;
 }
-.panel-login>.panel-heading a.active{
+.panel-login>.panel-heading button.active{
 	color: #029f5b;
 	font-size: 18px;
+	background: none;
+    border: none;
 }
 .panel-login > .panel-heading hr{
 	margin-top: 10px;
