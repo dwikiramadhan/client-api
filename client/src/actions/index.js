@@ -1,11 +1,4 @@
-import axios from 'axios';
-
-const token = localStorage.getItem('token')
-const request = axios.create({
-    baseURL: 'http://localhost:3000/',
-    timeout: 10000,
-    headers: { 'token': 'Bearer ' + token }
-});
+import request from './connect';
 
 //start create user 
 export const addUserSuccess = (user) => ({
@@ -69,59 +62,3 @@ export const loginUser = (email, password) => {
     }
 }
 //end login user
-
-//login user 
-export const addDataSuccess = (data) => ({
-    type: 'ADD_DATA_SUCCESS',
-    data
-})
-
-export const addDataFailure = (id) => ({
-    type: 'ADD_DATA_FAILURE',
-    id
-})
-
-export const addDataView = (id, letter, frequency) => ({
-    type: 'ADD_DATA',
-    id, letter, frequency
-})
-
-export const addData = (letter, frequency) => {
-    let id = Date.now()
-    return dispatch => {
-        dispatch(addDataView(letter, frequency))
-        return request.post('/api/data', {
-            id, letter, frequency
-        }).then(response => {
-            console.log(response.data.data)
-            dispatch(addDataSuccess(response.data.data))
-        }).catch(function (error) {
-            console.log(error);
-            dispatch(addDataFailure(id))
-        })
-    }
-}
-//end login user
-
-//load data 
-export const loadDataSuccess = (data) => ({
-    type: 'LOAD_DATA_SUCCESS',
-    data
-})
-
-export const loadDataFailure = () => ({
-    type: 'LOAD_DATA_FAILURE'
-})
-
-export const loadData = () => {
-    return dispatch => {
-        return request.get('/api/data')
-        .then(response => {
-            dispatch(loadDataSuccess(response.data))
-        }).catch(function (error) {
-            console.log(error);
-            dispatch(loadDataFailure())
-        })
-    }
-}
-//end load data

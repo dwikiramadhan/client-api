@@ -3,10 +3,6 @@ import React, { Component } from 'react';
 export default class DataSearch extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            letter: '',
-            frequency: ''
-        }
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
@@ -31,8 +27,8 @@ export default class DataSearch extends Component {
                         placeholder="A"
                         aria-label="Letter"
                         name="letter"
-                        value={this.state.letter}
-                        onChange={this.handleInputChange} />
+                        value={this.props.searchLetter}
+                        onChange={this.props.onSearchLetter} />
                 </div>
                 <div className="col-sm-4 d-flex">
                     <label className="col-form-label mr-2">Frequency</label>
@@ -42,8 +38,8 @@ export default class DataSearch extends Component {
                         placeholder="0.0000"
                         aria-label="Frequency"
                         name="frequency"
-                        value={this.state.frequency}
-                        onChange={this.handleInputChange} />
+                        value={this.props.searchFrequency}
+                        onChange={this.props.onSearchFrequency} />
                 </div>
             </form>
         )

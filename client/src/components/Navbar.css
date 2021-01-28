@@ -1,11 +1,17 @@
 .nav-link {
     background: none;
     border: none;
+    padding: 1rem 1rem;
+}
+
+.navbar {
+    padding: 0px
 }
 
 .nav-link.active {
-    background: none;
+    background: black;
     border: none;
+    padding: 1rem 1rem;
 }
 
 .navbar-dark .navbar-brand {

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addData } from '../actions'
+import { addDataDate } from '../../actions/dataDates'
 
-class DataForm extends Component {
+class DataDateForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isVisibleAdd: 'card visible',
+            isVisibleAdd: 'card d-none',
             letter: '',
             frequency: ''
         }
@@ -17,7 +17,7 @@ class DataForm extends Component {
 
     handleClickAdd() {
         this.setState({
-            isVisibleAdd: 'card visible'
+            isVisibleAdd: 'card'
         })
     }
 
@@ -33,7 +33,7 @@ class DataForm extends Component {
 
     handleClickSave(event) {
         if (this.state.letter && this.state.frequency) {
-            this.props.addData(this.state.letter, this.state.frequency)
+            this.props.addDataDate(this.state.letter, this.state.frequency)
             this.setState({ letter: '', frequency: '' })
         }
         event.preventDefault();
@@ -48,9 +48,8 @@ class DataForm extends Component {
                             <div className="col-sm-3 d-flex">
                                 <label className="col-form-label mr-2">Letter</label>
                                 <input 
-                                    type="text" 
+                                    type="date" 
                                     className="form-control" 
-                                    placeholder="A" 
                                     aria-label="Letter"
                                     name="letter"
                                     value={this.state.letter}
@@ -77,10 +76,10 @@ class DataForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    addData: (letter, frequency) => dispatch(addData(letter, frequency)),
+    addDataDate: (letter, frequency) => dispatch(addDataDate(letter, frequency)),
 })
 
 export default connect(
     null,
     mapDispatchToProps
-)(DataForm)
+)(DataDateForm)

@@ -1,8 +1,8 @@
 import Swal from 'sweetalert2';
 
-const datas = (state = [], action) => {
+const dataDates = (state = [], action) => {
     switch (action.type) {
-        case 'ADD_DATA':
+        case 'ADD_DATA_DATE':
             return [
                 ...state,
                 {
@@ -12,7 +12,7 @@ const datas = (state = [], action) => {
                 }
             ]
 
-        case 'ADD_DATA_SUCCESS':
+        case 'ADD_DATA_DATE_SUCCESS':
             return state.map(item => {
                 // return console.log(item)
                 Swal.fire({
@@ -25,32 +25,19 @@ const datas = (state = [], action) => {
                 return item
             });
 
-        case 'ADD_DATA_EXISTS':
-            return state.map(item => {
-                // return console.log(item)
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Title is already exists!',
-                    text: ''
-                }).then(function () {
-                    // history.push('/home')
-                });
-                return item
-            });
-
-        case 'ADD_DATA_FAILURE':
+        case 'ADD_DATA_DATE_FAILURE':
             return state.map((item) => {
                 return item
             });
 
-        case 'LOAD_DATA_SUCCESS':
+        case 'LOAD_DATA_DATE_SUCCESS':
             return action.data.data.map((item) => {
                 item.sent = true;
                 item.isBtnSave = false;
                 return item
             })
 
-        case 'UPDATE_DATA':
+        case 'UPDATE_DATA_DATE':
             return state.map(item => {
                 if (item.id === action.id) {
                     return (
@@ -64,19 +51,20 @@ const datas = (state = [], action) => {
                 return item
             })
 
-        case 'UPDATE_DATA_SUCCESS':
+        case 'UPDATE_DATA_DATE_SUCCESS':
             return state;
 
-        case 'UPDATE_DATA_FAILURE':
+        case 'UPDATE_DATA_DATE_FAILURE':
             return state;
 
-        case 'DELETE_DATA':
+        case 'DELETE_DATA_DATE':
+            console.log(state.filter(item => item._id !== action.id))
             return state.filter(item => item._id !== action.id)
 
-        case 'DELETE_DATA_SUCCESS':
+        case 'DELETE_DATA_DATE_SUCCESS':
             return state
 
-        case 'DELETE_DATA_FAILURE':
+        case 'DELETE_DATA_DATE_FAILURE':
             return state;
 
         default:
@@ -84,4 +72,4 @@ const datas = (state = [], action) => {
     }
 }
 
-export default datas
+export default dataDates

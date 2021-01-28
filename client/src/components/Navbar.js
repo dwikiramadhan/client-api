@@ -2,6 +2,7 @@ import React from 'react';
 import './Navbar.css'
 
 export default function Navbar() {
+    const url = window.location.pathname.split('/')[1];
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
@@ -11,18 +12,17 @@ export default function Navbar() {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarText">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="/home">Home</a>
+                            {(url === 'home') ? <a className="nav-link active" aria-current="page" href="/home">Home</a> : <a className="nav-link" aria-current="page" href="/home">Home</a>}
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="/data">Data</a>
+                            {(url === 'data') ? <a className="nav-link active" href="/data">Data</a> : <a className="nav-link" href="/data">Data</a>}
                         </li>
                         <li className="nav-item">
-                            <button className="nav-link" >Data Date</button>
+                            {(url === 'dataDate') ? <a className="nav-link active" href="/dataDate">Data Date</a> : <a className="nav-link" href="/dataDate">Data Date</a>}
                         </li>
                         <li className="nav-item">
-                            <button className="nav-link" >Maps</button>
+                            {(url === 'maps') ? <a className="nav-link active" href="/maps">Maps</a> : <a className="nav-link" href="/maps">Maps</a>}
                         </li>
                     </ul>
                 </div>
