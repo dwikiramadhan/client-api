@@ -6,6 +6,7 @@ import Login from "./components/login/Login";
 import Map from "./components/map/Map";
 import Bar from "./components/bar/Bar";
 import Pie from "./components/pie/Pie";
+import Line from "./components/line/Line";
 
 import Home from "./components/home/Home";
 import Data from "./components/data/Data";
@@ -23,6 +24,7 @@ export default class Routes extends Component {
                     <Route path="/map" component={Map} />
                     <Route path="/bar" component={Bar} />
                     <Route path="/pie" component={Pie} />
+                    <Route path="/line" component={Line} />
                     
                     <Route path="/home" component={Home} />
                     <Route path="/data" component={Data} />

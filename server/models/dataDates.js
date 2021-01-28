@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const dataDateSchema = new mongoose.Schema({
-    id: Number,
     letter: String,
     frequency: Number,
 });

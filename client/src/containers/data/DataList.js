@@ -13,11 +13,11 @@ class DataList extends Component {
         let dataFiltered = this.props.data;
         if (this.props.searchLetter && this.props.searchFrequency) {
             dataFiltered = this.props.data.filter(item =>
-                item.letter === this.props.searchLetter && Number(item.frequency) === Number(this.props.searchFrequency)
+                item.letter.toLowerCase() === this.props.searchLetter.toLowerCase() && Number(item.frequency) === Number(this.props.searchFrequency)
             )
         }else if(this.props.searchLetter){
             dataFiltered = this.props.data.filter(item =>
-                item.letter === this.props.searchLetter
+                item.letter.toLowerCase() === this.props.searchLetter.toLowerCase()
             )
         }else if(this.props.searchFrequency){
             dataFiltered = this.props.data.filter(item => 

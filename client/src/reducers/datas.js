@@ -22,6 +22,7 @@ const datas = (state = [], action) => {
                 }).then(function () {
                     // history.push('/home')
                 });
+                item.sent = true
                 return item
             });
 
@@ -40,6 +41,9 @@ const datas = (state = [], action) => {
 
         case 'ADD_DATA_FAILURE':
             return state.map((item) => {
+                if (item.id === action.id) {
+                    item.sent = false
+                }
                 return item
             });
 
@@ -49,6 +53,9 @@ const datas = (state = [], action) => {
                 item.isBtnSave = false;
                 return item
             })
+
+        case 'LOAD_DATA_FAILURE':
+            return state;
 
         case 'UPDATE_DATA':
             return state.map(item => {

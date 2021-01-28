@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { updateData, deleteData } from '../../actions/datas';
+import { updateData, deleteData, resendData } from '../../actions/datas';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 
@@ -15,6 +15,7 @@ class DataItem extends Component {
         this.handleInputChange = this.handleInputChange.bind(this)
         this.handleUpdate = this.handleUpdate.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
+        this.handleResend = this.handleResend.bind(this)
     }
 
     editBtnClicked() {
@@ -38,6 +39,10 @@ class DataItem extends Component {
         this.setState({
             isEdit: false
         })
+    }
+
+    handleResend() {
+        this.props.resendData(this.props.id, this.state.letter, this.state.frequency)
     }
 
     handleDelete() {
@@ -81,14 +86,13 @@ class DataItem extends Component {
             )
         } else {
             return (
-                <tr>
+                <tr className={this.props.sent ? "" : "bg-danger text-white"}>
                     <th scope="row">{this.props.no}</th>
                     <td>{this.state.letter}</td>
                     <td>{this.state.frequency}</td>
-
                     <td>
-                        <button onClick={this.editBtnClicked} className="btn btn-success mr-2 "><i className="fa fa-edit"></i> update </button>
-                        <button onClick={this.handleDelete} className="btn btn-danger"><i className="fa fa-trash"></i> delete</button>
+                        <button onClick={this.editBtnClicked} className={this.props.sent ? "btn btn-success mr-2" : "d-none"}><i className="fa fa-edit"></i> update </button>
+                        <button onClick={ this.props.sent ? this.handleDelete : this.handleResend} className={this.props.sent ? 'btn btn-danger' : 'btn btn-warning'}><i className={this.props.sent ? "fa fa-trash" : "fa fa-refresh"}></i> { this.props.sent ? 'delete' : 'Resend' }</button>
                     </td>
                 </tr>
             )
@@ -98,7 +102,8 @@ class DataItem extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
     updateData: (id, letter, frequency) => dispatch(updateData(id, letter, frequency)),
-    deleteData: (id) => dispatch(deleteData(id))
+    deleteData: (id) => dispatch(deleteData(id)),
+    resendData: (id, letter, frequency) => dispatch(resendData(id, letter, frequency)),
 })
 
 export default connect(

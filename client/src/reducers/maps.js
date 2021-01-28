@@ -23,11 +23,15 @@ const maps = (state = [], action) => {
                 }).then(function () {
                     // history.push('/home')
                 });
+                item.sent = true
                 return item
             });
 
         case 'ADD_MAPS_FAILURE':
             return state.map((item) => {
+                if (item.id === action.id) {
+                    item.sent = false
+                }
                 return item
             });
 
@@ -36,6 +40,9 @@ const maps = (state = [], action) => {
                 item.sent = true;
                 return item
             })
+
+        case 'LOAD_DATA_FAILURE':
+            return state
 
         case 'UPDATE_MAPS':
             return state.map(item => {

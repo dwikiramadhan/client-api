@@ -114,3 +114,17 @@ export const deleteMaps = (id) => {
     }
 }
 //end update data
+
+//start resend data
+export const resendMaps = (id, title, lat, lang) => {
+    return dispatch => {
+        return request.post('/api/maps', { id, title, lat, lang })
+            .then(function (response) {
+                dispatch(addMapsSuccess(response.data))
+            })
+            .catch(function (error) {
+                console.error(error);
+                dispatch(addMapsFailure(id))
+            });
+    }
+}

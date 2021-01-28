@@ -41,6 +41,7 @@ export const addData = (letter, frequency) => {
             }
         }).catch(function (error) {
             console.log(error);
+            dispatch(addDataView(id, letter, frequency))
             dispatch(addDataFailure(id))
         })
     }
@@ -128,4 +129,18 @@ export const deleteData = (id) => {
             })
     }
 }
-//end update data
+//end delete data
+
+//start resend data
+export const resendData = (id, letter, frequency) => {
+    return dispatch => {
+        return request.post('/api/data', { id, letter, frequency })
+            .then(function (response) {
+                dispatch(addDataSuccess(response.data))
+            })
+            .catch(function (error) {
+                console.error(error);
+                dispatch(addDataFailure(id))
+            });
+    }
+}

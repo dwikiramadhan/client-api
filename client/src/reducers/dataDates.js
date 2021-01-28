@@ -22,11 +22,15 @@ const dataDates = (state = [], action) => {
                 }).then(function () {
                     // history.push('/home')
                 });
+                item.sent = true
                 return item
             });
 
         case 'ADD_DATA_DATE_FAILURE':
             return state.map((item) => {
+                if (item.id === action.id) {
+                    item.sent = false
+                }
                 return item
             });
 
@@ -36,6 +40,9 @@ const dataDates = (state = [], action) => {
                 item.isBtnSave = false;
                 return item
             })
+
+        case 'LOAD_DATA_DATE_FAILURE':
+            return state
 
         case 'UPDATE_DATA_DATE':
             return state.map(item => {

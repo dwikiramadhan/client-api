@@ -19,10 +19,9 @@ export const addDataDateView = (id, letter, frequency) => ({
 export const addDataDate = (letter, frequency) => {
     let id = Date.now()
     return dispatch => {
-        console.log(id + letter + frequency)
         dispatch(addDataDateView(id, letter, frequency))
         return request.post('/api/dataDate', {
-            id, letter, frequency
+            letter, frequency
         }).then(response => {
             console.log(response.data.data)
             dispatch(addDataDateSuccess(response.data.data))
@@ -116,3 +115,17 @@ export const deleteDataDate = (id) => {
     }
 }
 //end update data
+
+//start resend data
+export const resendDataDate = (id, letter, frequency) => {
+    return dispatch => {
+        return request.post('/api/dataDate', { id, letter, frequency })
+            .then(function (response) {
+                dispatch(addDataDateSuccess(response.data))
+            })
+            .catch(function (error) {
+                console.error(error);
+                dispatch(addDataDateFailure(id))
+            });
+    }
+}
