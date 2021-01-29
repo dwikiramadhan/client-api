@@ -12,7 +12,9 @@ import Home from "./components/home/Home";
 import Data from "./components/data/Data";
 import DataDate from "./components/dataDate/DataDate";
 import Maps from "./components/maps/Maps";
-import history from "./history"
+import history from "./history";
+
+import { ProtectedRoute } from "./protected.route";
 
 export default class Routes extends Component {
     render() {
@@ -26,7 +28,7 @@ export default class Routes extends Component {
                     <Route path="/pie" component={Pie} />
                     <Route path="/line" component={Line} />
                     
-                    <Route path="/home" component={Home} />
+                    <ProtectedRoute exact path="/home" component={Home} />
                     <Route path="/data" component={Data} />
                     <Route path="/dataDate" component={DataDate} />
                     <Route path="/maps" component={Maps} />

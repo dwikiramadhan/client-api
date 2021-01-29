@@ -50,7 +50,7 @@ router.post('/users/login', function (req, res, next) {
     Users.findOne({ email }, function (err, data) {
         if (!data) {
             return res.status(200).json({
-                msg: 'Email or Password not found'
+                msg: false
             })
         }
         bcrypt.compare(password, data.password, function (err, result) {
@@ -61,12 +61,13 @@ router.post('/users/login', function (req, res, next) {
                         data: {
                             email: data.email
                         },
-                        token: data.token
+                        token: data.token,
+                        msg: true
                     })
                 })
             } else {
                 res.json({
-                    msg: 'Email or Password not found'
+                    msg: false
                 })
             }
         });

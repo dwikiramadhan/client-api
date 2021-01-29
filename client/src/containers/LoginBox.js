@@ -14,7 +14,8 @@ class LoginBox extends Component {
             password: '',
             retypepassword: '',
             isTrue: '',
-            messageisTrue: ''
+            messageisTrue: '',
+            statusUser: true
         }
         this.handleClick = this.handleClick.bind(this);
         this.handleSubmitRegister = this.handleSubmitRegister.bind(this);
@@ -66,6 +67,8 @@ class LoginBox extends Component {
     }
 
     render() {
+        const status = this.props.data.map(item => item.status)
+        console.log(status[0])
         return (
             <div className="panel panel-login">
                 <div className="panel-heading">
@@ -82,6 +85,9 @@ class LoginBox extends Component {
                 <div className="panel-body">
                     <div className="row">
                         <div className="col-lg-12">
+                            <div className={status[0] || status[0] === undefined ? 'd-none' : 'alert alert-danger'} role="alert">
+                                Email or Password Wrong!
+                            </div>
                             <form id="login-form" onSubmit={this.handleSubmitLogin} style={{ display: this.state.default_content }}>
                                 {/* <div className={this.state.isTrue} role="alert">
                                     {this.state.messageisTrue}
@@ -166,12 +172,16 @@ class LoginBox extends Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    data: state.users
+})
+
 const mapDispatchToProps = dispatch => ({
     addUser: (email, password, retypepassword) => dispatch(addUser(email, password, retypepassword)),
     loginUser: (email, password) => dispatch(loginUser(email, password))
 })
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(LoginBox)

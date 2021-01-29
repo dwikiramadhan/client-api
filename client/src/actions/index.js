@@ -54,7 +54,11 @@ export const loginUser = (email, password) => {
         return request.post('/api/users/login', {
             email, password
         }).then(response => {
-            dispatch(loginSuccess(response.data))
+            if (response.data.msg) {
+                dispatch(loginSuccess(response.data))
+            }else{
+                dispatch(loginFailure(email))
+            }
         }).catch(function (error) {
             console.log(error);
             dispatch(loginFailure(email))

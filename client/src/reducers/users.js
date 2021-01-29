@@ -43,12 +43,14 @@ const users = (state = [], action) => {
         case 'LOGIN_SUCCESS':
             return state.map(item => {
                 localStorage.setItem("token", action.user.token);
+                localStorage.setItem("email", action.user.data.email);
                 history.push('/home')
                 return item
             });
 
         case 'LOGIN_FAILURE':
             return state.map((item) => {
+                item.status = false
                 return item
             });
 

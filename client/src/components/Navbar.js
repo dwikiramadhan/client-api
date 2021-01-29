@@ -1,5 +1,11 @@
 import React from 'react';
 import './Navbar.css'
+import history from '../history';
+
+function logout(){
+    localStorage.clear()
+    history.push('/login')
+}
 
 export default function Navbar() {
     const url = window.location.pathname.split('/')[1];
@@ -26,7 +32,7 @@ export default function Navbar() {
                         </li>
                     </ul>
                 </div>
-                <button type="button" className="btn btn-warning">Logout</button>
+                <button type="button" onClick={logout} className="btn btn-warning">Logout</button>
             </div>
         </nav>
     )
